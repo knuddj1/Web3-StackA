@@ -1,0 +1,23 @@
+body{
+    background-color: #8055ec;
+}
+
+.nav-header{
+    font-size: 3.25rem;
+    font-weight: lighter;
+
+}
+
+.jumbotron {
+    height: 60vh;
+}
+
+.main{
+    margin-left: 2em;
+    margin-right: 2em;
+}
+
+.header-btn{
+    margin-top: 1em;
+    border-radius: 0%;
+}
