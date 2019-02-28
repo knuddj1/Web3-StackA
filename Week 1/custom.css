@@ -68,8 +68,6 @@ body{
     color: white;
     width: inherit;
     min-height: 40em;
-    -webkit-box-shadow: 0px 0px 25px 1px rgba(0,0,0,0.85);
-    -moz-box-shadow: 0px 0px 25px 1px rgba(0,0,0,0.85);
     box-shadow: 0px 0px 25px 1px rgba(0,0,0,0.85);
 }
 
@@ -80,10 +78,6 @@ body{
 .card-btn-container{
     margin: 0 auto;
     text-align: center;
-}
-
-.card-btn{
-    /* background-color: #130f2b; */
 }
 
 .card-title{
