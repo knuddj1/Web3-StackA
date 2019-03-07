@@ -1,0 +1,20 @@
+{% extends "base_template.html" %}
+{% block title %}{{page_title}}{% endblock %}
+{% block head %}{{ super() }}{% endblock %}
+{% block content %}
+    <!-- Content Area -->
+    <div class="main">
+        <div class="jumbotron jumbotron-fluid bg-transparent">  
+            <div class="container-fluid py-4 px-md-5 content-area">
+                <h1 class="display-4 content-title">LANDING PAGE</h1>
+                <p class="content-text">That first page you reach on a website. You know the one</p>
+            </div>
+        </div>
+        <div class="jumbotron jumbotron-fluid border border-light bg-transparent">  
+            <div class="container-fluid py-5 px-md-5 content-area">
+                <h1 class="display-4 content-title">PLACEHOLDER FOR VISUALISATION</h1>
+                <p class="content-text">Watch this space</p>
+            </div>
+        </div>                
+    </div>
+{% endblock %}

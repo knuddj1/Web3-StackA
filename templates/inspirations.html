@@ -1,0 +1,53 @@
+{% extends "base_template.html" %}
+{% block title %}{{page_title}}{% endblock %}
+{% block head %}{{ super() }}{% endblock %}
+{% block content %}
+    <!-- Content Area -->
+    <div class="main">
+        <div class="jumbotron jumbotron-fluid bg-transparent ">  
+            <div class="container-fluid py-4 px-md-5 content-area">
+                <h1 class="display-4 content-title">INSPIRATIONS</h1>
+                <p class="content-text">These are the pages that inspired the design of this website.</p>
+            </div>
+        </div> 
+        <div class="row middle">
+            <div class="col-3 middle">
+                <div class="card card-override middle">
+                    <img src="{{ url_for('static', filename='images/tower.jpg') }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h3 class="card-title">Huxley Digital</h3>
+                        <p class="card-text">I really like the use of colour on this site. It feels as if the creator is able to direct my eyes where they want them to go. It also strays away from the typical white/grey/black websites that are very common now days, this gives it an inovative and new feel. I also really like the simple navbar. Im going to use the design in my site.</p>
+                        <div class="card-btn-container">
+                            <a href="https://www.huxleydigital.co.uk/ " class="btn btn-outline-warning  ">Check It Out!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3 middle">
+                <div class="card card-override middle">
+                    <img src="{{ url_for('static', filename='images/eyes.jpg') }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h3 class="card-title">Ting</h3>
+                        <p class="card-text">I like the cartoony design of this website. Its a fiber internet company, but without reading the text that isn't apparent. Maybe a bit misleading, however its ability to attract clicks from users who never would have otherwise, is something I find a lot of value in.</p>
+                        <div class="card-btn-container">
+                            <a href="https://ting.com/internet" class="btn btn-outline-warning">Check It Out!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3 middle">
+                <div class="card card-override middle">
+                    <img src="{{ url_for('static', filename='images/trees.jpg') }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h3 class="card-title">Hello Heco</h3>
+                        <p class="card-text">I really enjoy the transitions between the different sections of each page of this website. I think I want to do something like this on my site.</p>
+                        <div class="card-btn-container">
+                            <a href="https://www.helloheco.com/" class="btn btn-outline-warning">Check It Out!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>               
+    </div>
+{% endblock %}
+
