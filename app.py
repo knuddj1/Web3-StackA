@@ -20,22 +20,17 @@ def index():
 		}       
 	return render_template("index.html", **kwargs)
 
+
 @app.route('/sacred')
 def upload():
 	user = User(email="FAk3@gmail.com", first_name="Dean", last_name="Knudson")
 	user.save()
 
+
 @app.route('/inspiration')
 def inspiration():
 	page_title = "Inspirations"
-
-	try:
-		for user in User.objects:
-			print(user)
-	except ValueError:
-		print("NO USERS EXIST")
-	finally:
-		return render_template("inspirations.html", page_title=page_title)
+	return render_template("inspirations.html", page_title=page_title)
 
 if __name__ =="__main__":
 	app.run(debug=True, host='0.0.0.0', port=80)
