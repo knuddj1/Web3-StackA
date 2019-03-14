@@ -17,7 +17,7 @@ class User(Document):
 def index():
 	kwargs = {
 		"page_title": "Index"
-		}       
+		}
 	return render_template("index.html", **kwargs)
 
 
@@ -27,10 +27,9 @@ def upload():
 	user.save()
 
 	for u in User.objects:
-    	print("{} {} : {}".format(u["first_name"], u["last_name"], u["email"]))
+		print("{} {} : {}".format(u["first_name"], u["last_name"], u["email"]))
 	
-	return redirect(url_for('index'))
-		
+	return redirect(url_for('index'))	
 
 
 @app.route('/inspiration')
