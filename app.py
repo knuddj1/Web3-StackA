@@ -6,19 +6,19 @@ app = Flask(__name__)
 connect('mongo_knuddy')
 
 class User(Document):
-    email = StringField()
+	email = StringField()
 	first_name = StringField()
-    last_name = StringField()
+	last_name = StringField()
 
 
 @app.route('/')
 @app.route('/index')
 @app.route('/home')
 def index():
-    kwargs = {
-        "page_title": "Index"
-        }       
-    return render_template("index.html", **kwargs)
+	kwargs = {
+		"page_title": "Index"
+		}       
+	return render_template("index.html", **kwargs)
 
 @app.route('/sacred')
 def upload():
@@ -27,12 +27,12 @@ def upload():
 
 @app.route('/inspiration')
 def inspiration():
-    page_title = "Inspirations"
+	page_title = "Inspirations"
 
-    for user in User.objects:
-        print(user)
+	for user in User.objects:
+		print(user)
 
-    return render_template("inspirations.html", page_title=page_title)
+	return render_template("inspirations.html", page_title=page_title)
 
 if __name__ =="__main__":
-    app.run(debug=True, port=80)
+	app.run(debug=True, port=80)
