@@ -29,8 +29,8 @@ def upload():
 def inspiration():
 	page_title = "Inspirations"
 
-	for user in User.objects:
-		print(user)
+	#for user in User.objects:
+	#	print(user)
 
 	return render_template("inspirations.html", page_title=page_title)
 
