@@ -6,13 +6,10 @@ app = Flask(__name__)
 connect('mongo_knuddy')
 
 class User(Document):
-    username = StringField()
     email = StringField()
-    password = StringField()
-    confirm = PasswordField('Repeat Password')
+	first_name = StringField()
+    last_name = StringField()
 
-
-dean = User(email="FAk3@gmail.com", first_name="Dean", last_name="Knudson")
 
 @app.route('/')
 @app.route('/index')
@@ -23,6 +20,10 @@ def index():
         }       
     return render_template("index.html", **kwargs)
 
+@app.route('/sacred')
+def upload():
+	user = User(email="FAk3@gmail.com", first_name="Dean", last_name="Knudson")
+	user.save()
 
 @app.route('/inspiration')
 def inspiration():
