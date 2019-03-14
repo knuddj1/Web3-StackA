@@ -26,6 +26,12 @@ def upload():
 	user = User(email="FAk3@gmail.com", first_name="Dean", last_name="Knudson")
 	user.save()
 
+	for u in User.objects:
+    	print("{} {} : {}".format(u["first_name"], u["last_name"], u["email"]))
+	
+	return redirect(url_for('index'))
+		
+
 
 @app.route('/inspiration')
 def inspiration():
