@@ -29,8 +29,11 @@ def upload():
 def inspiration():
 	page_title = "Inspirations"
 
-	#for user in User.objects:
-	#	print(user)
+	try:
+		for user in User.objects:
+			print(user)
+	except ValueError:
+		print("NO USERS EXIST")
 
 	return render_template("inspirations.html", page_title=page_title)
 
