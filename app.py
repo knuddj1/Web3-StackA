@@ -38,7 +38,10 @@ def get_country(country_id=None):
 	if country_id is None:
 		countries = Country.objects
 	else:
-		countries = Country.objects.get(id=country_id)
+		try:
+			countries = Country.objects.get(id=country_id)
+		except ValueError:
+			return "No countries with that id found"
 	return countries.to_json()
 
 
