@@ -6,6 +6,7 @@ from mongoengine import *
 
 app = Flask(__name__)
 connect('mongo_knuddy')
+
 class Data(EmbeddedDocument):
 	year = IntField()
 	payload = FloatField()
@@ -13,6 +14,8 @@ class Data(EmbeddedDocument):
 class Country(Document):
 	country_name = StringField()
 	cell_data = ListField(EmbeddedDocumentField(Data))
+	internet_users = ListField(EmbeddedDocumentField(Data))
+	sugar_data = ListField(EmbeddedDocumentField(Data))
 
 
 @app.route('/')
@@ -42,7 +45,8 @@ def get_country_obj(country_name):
 @app.route('/read_data')
 def read_data():
 	app.config.from_object('config')
-	for file in os.listdir(app.config['FILES_FOLDER']):
+	iters = zip(os.listdir(app.config['FILES_FOLDER']),["cell_data", "internet_users", "sugar_data"])
+	for file, list_field in iters:
 		filename = os.fsdecode(file)
 		path = os.path.join(app.config['FILES_FOLDER'], filename)
 		df = pd.read_csv(path).fillna(0)
@@ -53,11 +57,8 @@ def read_data():
 			query = query.to_dict(orient='list')
 			for year in list(df)[1:]:
 				payload = query[year][0]
-				d = Data(
-					year = int(year),
-					payload = float(payload)
-				)
-				country_obj["cell_data"].append(d)
+				d = Data(year = int(year), payload = float(payload))
+				country_obj[list_field].append(d)
 			country_obj.save()
 
 
