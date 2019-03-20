@@ -6,15 +6,14 @@ from mongoengine import *
 
 app = Flask(__name__)
 connect('mongo_knuddy')
+class Data(EmbeddedDocument):
+	year = IntField()
+	payload = FloatField()
 
 class Country(Document):
 	country_name = StringField()
+	cell_data = ListField(EmbeddedDocumentField(Data))
 
-class Data(Document):
-	country_id = StringField()
-	year = IntField()
-	filename = StringField()
-	payload = FloatField()
 
 
 @app.route('/')
