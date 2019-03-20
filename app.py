@@ -43,15 +43,15 @@ def check_countries(lst):
 
 @app.route('/read_data')
 def read_data():
-	# for file in os.listdir(app.config['FILES_FOLDER']):
-	# 	filename = os.fsdecode(file)
-	# 	path = os.path.join(app.config['FILES_FOLDER'], filename)
-	# 	df = pd.read_csv(path)
-	# 	country_key = list(df)[0]
-	# 	for country in df[country_key]:
-	# 		query = df.loc[df[country_key] == "New Zealand"]
+	for file in os.listdir(app.config['FILES_FOLDER']):
+		filename = os.fsdecode(file)
+		path = os.path.join(app.config['FILES_FOLDER'], filename)
+		df = pd.read_csv(path)
+		country_key = list(df)[0]
+		for country in df[country_key]:
+			query = df.loc[df[country_key] == "New Zealand"]
 
-    # 		query.to_dict(orient='list'))
+    		query.to_dict(orient='list'))
 		
 
 
