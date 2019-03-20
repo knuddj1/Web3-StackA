@@ -54,11 +54,12 @@ def read_data():
 			query = df.loc[df["country"] == country]
 			query = query.to_dict(orient='list')
 			for year in list(df)[1:]:
+				payload = query[year][0]
 				Data(
 					country_id=country.id,
 					year = int(year),
 					filename = filename,
-					payload = int(query[year][-1])
+					payload = float(payload)
 				).save()
 
 
