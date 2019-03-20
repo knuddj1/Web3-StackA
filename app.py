@@ -18,7 +18,6 @@ class Data(Document):
 	year_id = IntField()
 	filename = StringField()
 	payload = FloatField()
-	
 
 
 @app.route('/')
@@ -37,11 +36,10 @@ def inspiration():
 	return render_template("inspirations.html", page_title=page_title)
 
 
-# def add_countries(country_lst):
-# 	countries = Country.objects
-# 	for country in country_lst:
-# 		if Country.objects.get(id=country_id):
-
+def check_countries(lst):
+	for c in lst:
+		if len(Country.objects(country_name=c)) is 0:
+			Country(country_name=c).save()
 
 @app.route('/read_data')
 def read_data():
@@ -49,29 +47,27 @@ def read_data():
 		filename = os.fsdecode(file)
 		path = os.path.join(app.config['FILES_FOLDER'], filename)
 		df = pd.read_csv(path)
-		country_key, years_keys = list(df)[0], list(df)[1:]
-		countries = df[country_key]
+		country_key list(df)[0]
+		for country in df[country_key]:
+			query = df.loc[df[country_key] == "New Zealand"]
 
-			
+    		query.to_dict(orient='list'))
+		
 
-# @app.route('/create/<string:country_name>', methods=['POST'])
-# def create_country(country_name):
-# 	choices = []
 
-# 	country = Country(country_name=country_name)
-# 	country.save()
-# 	redirect(url_for(get_country(country_id=country.id)))
+@app.route('/update/<string:country_name>', methods=['PUT'])
+def update_country(country_name):
+	pass
+
+@app.route('/create/<string:country_name>', methods=['POST'])
+def create_country(country_name):
+	pass
 
 
 @app.route('/country', methods=['GET'])
 @app.route('/country/<int:country_id>', methods=['GET'])
-def get_country(country_id=1):
-	Country("Test").save
-
-	if country_id is None:
-		countries = Country.objects
-	else:
-		countries = Country.objects(id=country_id)
+def get_country(country_id=None):
+	countries = Country.objects
 	return countries.to_json()
 
 
