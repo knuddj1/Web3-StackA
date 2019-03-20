@@ -15,7 +15,6 @@ class Country(Document):
 	cell_data = ListField(EmbeddedDocumentField(Data))
 
 
-
 @app.route('/')
 @app.route('/index')
 @app.route('/home')
@@ -54,12 +53,12 @@ def read_data():
 			query = query.to_dict(orient='list')
 			for year in list(df)[1:]:
 				payload = query[year][0]
-				Data(
-					country_id=country_obj.id,
+				d = Data(
 					year = int(year),
-					filename = filename,
 					payload = float(payload)
-				).save()
+				)
+				country_obj["cell_data"].append(d)
+			country_obj.save()
 
 
 
