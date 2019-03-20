@@ -13,4 +13,4 @@ for file in os.listdir(FILES_FOLDER):
     
     query = df.loc[df["country"] == "New Zealand"]
     # query.drop(query.columns[[0]], axis=0)
-    print(list(df)[1:])
+    print(query.to_dict(orient='list'))
