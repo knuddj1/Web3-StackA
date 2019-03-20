@@ -29,6 +29,7 @@ def inspiration():
 @app.route('/read_data')
 def read_data():
 	import os
+	import csv
 	app.config.from_object('config')
 	for file in os.listdir(app.config['FILES_FOLDER']):
 		filename = os.fsdecode(file)
