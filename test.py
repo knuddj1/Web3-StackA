@@ -13,6 +13,4 @@ for file in os.listdir(FILES_FOLDER):
     
     query = df.loc[df["country"] == "New Zealand"]
 
-    print(query.to_dict(orient='list'))
-    print(query.to_dict(orient='list')['1961'][0])
-    exit(0)
+    print(df)
