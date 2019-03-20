@@ -58,7 +58,7 @@ def read_data():
 					country_id=country.id,
 					year = int(year),
 					filename = filename,
-					payload = int(query[year])
+					payload = int(query[year][0])
 				).save()
 
 
