@@ -33,7 +33,7 @@ def read_data():
 	app.config.from_object('config')
 	for fname in os.listdir(app.config['FILES_FOLDER']):
 		path = os.path.join(app.config['FILES_FOLDER'], fname)
-		df = pd.read_csv(path)
+		df = pd.read_csv(path, error_bad_lines=False)
 		print(df)
 
 @app.route('/create/<string:country_name>', methods=['POST'])
