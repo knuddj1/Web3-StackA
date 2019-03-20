@@ -14,8 +14,8 @@ for file in os.listdir(FILES_FOLDER):
     for country in df["country"]:
         query = df.loc[df["country"] == country]
         query = query.to_dict(orient='list')
-        for year in list(df)[1:]:
-                payload = query[year][0]
+        print(list(df["country"]))
+        exit(0)
                 
 
     

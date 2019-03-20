@@ -50,13 +50,13 @@ def read_data():
 		df = pd.read_csv(path).fillna(0)
 
 		for country in df["country"]:
-			country = get_country_obj(country)
+			country_obj = get_country_obj(country)
 			query = df.loc[df["country"] == country]
 			query = query.to_dict(orient='list')
 			for year in list(df)[1:]:
 				payload = query[year][0]
 				Data(
-					country_id=country.id,
+					country_id=country_obj.id,
 					year = int(year),
 					filename = filename,
 					payload = float(payload)
