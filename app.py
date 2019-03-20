@@ -69,7 +69,7 @@ def get_country(country_id=1):
 	if country_id is None:
 		countries = Country.objects
 	else:
-		countries = Country.objects.get(id=str(country_id))
+		countries = Country.objects(_id=country_id)
 	return countries.to_json()
 
 
