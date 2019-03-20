@@ -34,9 +34,9 @@ def inspiration():
 
 
 def get_country_obj(country_name):
-	country_obj = Country.objects(country_name=c).first()
+	country_obj = Country.objects(country_name=country_name).first()
 	if country_obj is None:
-		country_obj = Country(country_name=c)
+		country_obj = Country(country_name=country_name)
 		country_obj.save()
 	return country_obj
 
