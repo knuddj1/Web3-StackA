@@ -47,7 +47,7 @@ def read_data():
 	for file in os.listdir(app.config['FILES_FOLDER']):
 		filename = os.fsdecode(file)
 		path = os.path.join(app.config['FILES_FOLDER'], filename)
-		df = pd.read_csv(path)
+		df = pd.read_csv(path).fillna(0)
 
 		for country in df["country"]:
 			country = get_country_obj(country)
