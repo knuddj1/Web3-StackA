@@ -43,6 +43,7 @@ def get_country_obj(country_name):
 
 @app.route('/read_data')
 def read_data():
+	app.config.from_object('config')
 	for file in os.listdir(app.config['FILES_FOLDER']):
 		filename = os.fsdecode(file)
 		path = os.path.join(app.config['FILES_FOLDER'], filename)
@@ -80,4 +81,3 @@ def get_country(country_id=None):
 
 if __name__ =="__main__":
 	app.run(debug=True, host='0.0.0.0', port=80)
-	app.config.from_object('config')
