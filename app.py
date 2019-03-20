@@ -33,7 +33,7 @@ def read_data():
 	app.config.from_object('config')
 	for fname in os.listdir(app.config['FILES_FOLDER']):
 		path = os.path.join(app.config['FILES_FOLDER'], fname)
-		with open(path, mode="r", encoding="utf-8"):
+		with open(path, mode="r", encoding="utf-8") as f:
 			r = csv.reader(f)
 			d = list(r)
 			for data in d:
