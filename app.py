@@ -6,6 +6,7 @@ app = Flask(__name__)
 connect('mongo_knuddy')
 
 class Country(Document):
+	country_code = StringField()
 	country_name = StringField()
 
 
@@ -25,8 +26,23 @@ def inspiration():
 	return render_template("inspirations.html", page_title=page_title)
 
 
+@app.route('/read_data')
+def read_data():
+	import os
+	app.config.from_object('config')
+	for file in os.listdir(app.config['FILES_FOLDER']):
+		filename = os.fsdecode(file)
+		path = os.path.join(app.config['FILES_FOLDER'], filename)
+		f = open(path)
+		r = csv.reader(f)
+		d = list(r)
+		for data in d:
+			print(data)
+
 @app.route('/create/<string:country_name>', methods=['POST'])
 def create_country(country_name):
+	choices = []
+
 	country = Country(country_name=country_name)
 	country.save()
 	redirect(url_for(get_country(country_id=country.id)))
