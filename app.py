@@ -29,15 +29,12 @@ def inspiration():
 @app.route('/read_data')
 def read_data():
 	import os
-	import csv
+	import pandas as pd
 	app.config.from_object('config')
 	for fname in os.listdir(app.config['FILES_FOLDER']):
 		path = os.path.join(app.config['FILES_FOLDER'], fname)
-		with open(path, mode="r", encoding="utf-8") as f:
-			r = csv.reader(f)
-			d = list(r)
-			for data in d:
-				print(data)
+		df = pd.read_csv(path)
+		print(df)
 
 @app.route('/create/<string:country_name>', methods=['POST'])
 def create_country(country_name):
