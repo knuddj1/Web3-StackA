@@ -57,8 +57,9 @@ def read_data():
 			query = query.to_dict(orient='list')
 			for year in list(df)[1:]:
 				payload = query[year][0]
-				d = Data(year = int(year), payload = float(payload))
-				country_obj[list_field].append(d)
+				if payload <= 0:
+					d = Data(year = int(year), payload = float(payload))
+					country_obj[list_field].append(d)
 			country_obj.save()
 
 
