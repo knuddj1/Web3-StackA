@@ -11,7 +11,7 @@ class Country(Document):
 	country_name = StringField()
 
 class Data(Document):
-	country_id = IntField()
+	country_id = StringField()
 	year = IntField()
 	filename = StringField()
 	payload = FloatField()
