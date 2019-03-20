@@ -66,6 +66,8 @@ def read_data():
 @app.route('/country', methods=['GET'])
 @app.route('/country/<int:country_id>', methods=['GET'])
 def get_country(country_id=1):
+	Country("Test").save
+
 	if country_id is None:
 		countries = Country.objects
 	else:
