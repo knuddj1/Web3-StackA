@@ -31,14 +31,13 @@ def read_data():
 	import os
 	import csv
 	app.config.from_object('config')
-	for file in os.listdir(app.config['FILES_FOLDER']):
-		filename = os.fsdecode(file)
-		path = os.path.join(app.config['FILES_FOLDER'], filename)
-		f = open(path)
-		r = csv.reader(f)
-		d = list(r)
-		for data in d:
-			print(data)
+	for fname in os.listdir(app.config['FILES_FOLDER']):
+		path = os.path.join(app.config['FILES_FOLDER'], fname)
+		with open(path, mode="r", encoding="utf-8"):
+			r = csv.reader(f)
+			d = list(r)
+			for data in d:
+				print(data)
 
 @app.route('/create/<string:country_name>', methods=['POST'])
 def create_country(country_name):
