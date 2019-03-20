@@ -10,12 +10,9 @@ connect('mongo_knuddy')
 class Country(Document):
 	country_name = StringField()
 
-class Year(Document):
-	year = IntField()
-
 class Data(Document):
 	country_id = IntField()
-	year_id = IntField()
+	year = IntField()
 	filename = StringField()
 	payload = FloatField()
 
@@ -36,23 +33,33 @@ def inspiration():
 	return render_template("inspirations.html", page_title=page_title)
 
 
-def check_countries(lst):
-	for c in lst:
-		if len(Country.objects(country_name=c)) is 0:
-			Country(country_name=c).save()
+def get_country_obj(country_name):
+	country_obj = Country.objects(country_name=c).first()
+	if country_obj is None:
+		country_obj = Country(country_name=c)
+		country_obj.save()
+	return country_obj
+
 
 @app.route('/read_data')
 def read_data():
-	# for file in os.listdir(app.config['FILES_FOLDER']):
-	# 	filename = os.fsdecode(file)
-	# 	path = os.path.join(app.config['FILES_FOLDER'], filename)
-	# 	df = pd.read_csv(path)
-	# 	country_key = list(df)[0]
-	# 	for country in df[country_key]:
-	# 		query = df.loc[df[country_key] == "New Zealand"]
+	for file in os.listdir(app.config['FILES_FOLDER']):
+		filename = os.fsdecode(file)
+		path = os.path.join(app.config['FILES_FOLDER'], filename)
+		df = pd.read_csv(path)
 
-    # 		query.to_dict(orient='list'))
-	pass
+		for country in df["country"]:
+			country = get_country_obj(country)
+			query = df.loc[df["country"] == country]
+			query = query.to_dict(orient='list')
+			for year in list(df):
+				Data(
+					country_id=country.id,
+					year = int(year),
+					filename = filename,
+					payload = int(query[year])
+				).save()
+
 
 
 @app.route('/update/<string:country_name>', methods=['PUT'])
@@ -67,7 +74,7 @@ def create_country(country_name):
 @app.route('/country', methods=['GET'])
 @app.route('/country/<int:country_id>', methods=['GET'])
 def get_country(country_id=None):
-	countries = Country.objects(country_name="New Zealand")
+	countries = Country.objects
 	return countries.to_json()
 
 
