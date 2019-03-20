@@ -53,7 +53,7 @@ def read_data():
 			country = get_country_obj(country)
 			query = df.loc[df["country"] == country]
 			query = query.to_dict(orient='list')
-			for year in list(df):
+			for year in list(df)[1:]:
 				Data(
 					country_id=country.id,
 					year = int(year),
