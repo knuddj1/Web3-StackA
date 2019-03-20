@@ -67,7 +67,7 @@ def create_country(country_name):
 @app.route('/country', methods=['GET'])
 @app.route('/country/<int:country_id>', methods=['GET'])
 def get_country(country_id=None):
-	countries = Country.objects
+	countries = Country.objects(country_name="New Zealand")
 	return countries.to_json()
 
 
