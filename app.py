@@ -44,6 +44,8 @@ def get_country_obj(country_name):
 
 @app.route('/read_data')
 def read_data():
+	command("dropDatabase")
+	connect('mongo_knuddy')
 	app.config.from_object('config')
 	iters = zip(os.listdir(app.config['FILES_FOLDER']),["cell_data", "internet_users", "sugar_data"])
 	for file, list_field in iters:
