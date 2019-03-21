@@ -49,7 +49,7 @@ def read_data():
 	for file, list_field in iters:
 		filename = os.fsdecode(file)
 		path = os.path.join(app.config['FILES_FOLDER'], filename)
-		df = pd.read_csv(path).fillna(0)
+		df = pd.read_csv(path).fillna(None)
 
 		for country in df["country"]:
 			country_obj = get_country_obj(country)
@@ -57,9 +57,8 @@ def read_data():
 			query = query.to_dict(orient='list')
 			for year in list(df)[1:]:
 				payload = query[year][0]
-				if payload > 0:
-					d = Data(year = int(year), payload = float(payload))
-					country_obj[list_field].append(d)
+				d = Data(year = int(year), payload = float(payload))
+				country_obj[list_field].append(d)
 			country_obj.save()
 
 

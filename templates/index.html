@@ -1,6 +1,9 @@
 {% extends "base_template.html" %}
 {% block title %}{{page_title}}{% endblock %}
-{% block head %}{{ super() }}{% endblock %}
+{% block head %}
+{{ super()}}
+<script src="https://d3js.org/d3.v5.min.js"></script>
+{% endblock %}
 {% block content %}
     <!-- Content Area -->
     <div class="main">
