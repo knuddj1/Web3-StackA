@@ -6,6 +6,7 @@ from mongoengine import *
 
 app = Flask(__name__)
 app.config.from_object('config')
+connect(app.config["DATABASE_NAME"])
 
 class Data(EmbeddedDocument):
 	year = IntField()
@@ -44,10 +45,6 @@ def get_country_obj(country_name):
 
 @app.route('/read_data')
 def read_data():
-
-	db = connect(app.config["DATABASE_NAME"])
-	db.drop_database(app.config["DATABASE_NAME"])
-	connect(app.config["DATABASE_NAME"])
 
 	iters = zip(os.listdir(app.config['FILES_FOLDER']),["cell_data", "internet_users", "sugar_data"])
 
