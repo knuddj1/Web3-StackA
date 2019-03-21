@@ -1,5 +1,8 @@
 $(function () {
     setUpSidebar();
+    $.get(ajaxURL, function(response){
+        console.log(response);
+    });
 });
 
 function setUpSidebar(){
@@ -20,6 +23,3 @@ function setUpSidebar(){
     });
 }
 
-$.get(ajaxURL, function(response){
-    console.log(response);
-});

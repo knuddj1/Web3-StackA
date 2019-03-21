@@ -8,6 +8,11 @@
 
         <title>{% block title %}{% endblock %}</title>
 
+        
+        <script>
+            var ajaxURL = "{{url_for('get_country')}}"
+        </script>
+
         <!-- Bootstrap CSS CDN -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
         <!-- Our Custom CSS -->
@@ -33,10 +38,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 
         <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
-
-        <script>
-            var ajaxURL = "{{url_for('get_country')}}"
-        </script>
         {% endblock %}
     </head>
 
