@@ -4,7 +4,7 @@ $(function () {
         console.log("SUCCESS");
     }).fail(function(){
         console.log("ERROR");
-    }).done(function(){
+    }).always(function(){
         console.log("DONE!");
     });
 });
