@@ -2,8 +2,10 @@ $(function () {
     setUpSidebar();
     $.get(ajaxURL, function(response){
         console.log("SUCCESS");
-    }).fail(function(){
+    }).error(function(){
         console.log("ERROR");
+    }).done(function(){
+        console.log("DONE!");
     });
 });
 
