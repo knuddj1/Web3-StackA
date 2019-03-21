@@ -20,10 +20,13 @@ function setUpSidebar(){
     });
 }
 
-get_country = $.get(URL, function(response){
-                        console.log(response)
-                    }).fail(function(){
-                        console.log("ERROR");
-                    }).always(function(){
-                        console.log("DONE!");
-                    });
+var get_country  = function(URL){
+    $.get(URL, function(response){
+        console.log(response)
+    }).fail(function(){
+        console.log("ERROR");
+    }).always(function(){
+        console.log("DONE!");
+    });
+}
+    
