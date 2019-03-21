@@ -1,12 +1,5 @@
 $(function () {
     setUpSidebar();
-    $.get(ajaxURL + "/New Zealand", function(response){
-        console.log(response)
-    }).fail(function(){
-        console.log("ERROR");
-    }).always(function(){
-        console.log("DONE!");
-    });
 });
 
 function setUpSidebar(){
@@ -27,3 +20,10 @@ function setUpSidebar(){
     });
 }
 
+get_country = $.get(URL, function(response){
+                        console.log(response)
+                    }).fail(function(){
+                        console.log("ERROR");
+                    }).always(function(){
+                        console.log("DONE!");
+                    });
