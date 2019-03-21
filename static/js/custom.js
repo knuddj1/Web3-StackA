@@ -1,7 +1,9 @@
 $(function () {
     setUpSidebar();
     $.get(ajaxURL, function(response){
-        console.log(response);
+        console.log("SUCCESS");
+    }).fail(function(){
+        console.log("ERROR");
     });
 });
 
