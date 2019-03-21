@@ -80,10 +80,12 @@ def create_country(country_name):
 
 
 @app.route('/country', methods=['GET'])
-@app.route('/country/<int:country_id>', methods=['GET'])
-def get_country(country_id=None):
-	countries = Country.objects
-	return countries.to_json()
+@app.route('/country/<string:country_id>', methods=['GET'])
+def get_country(country_name):	
+	if country_name is None:
+		return Country.objects.to_json()
+	else:
+		return Country.objects(country_name).to_json()
 
 
 if __name__ =="__main__":
