@@ -82,7 +82,7 @@ def get_country(country_name=None):
 	if country_name is None:
 		return Country.objects.to_json()
 	else:
-		return Country.objects(country_name).to_json()
+		return Country.objects(country_name=country_name).to_json()
 
 
 if __name__ =="__main__":
