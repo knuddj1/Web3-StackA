@@ -49,7 +49,7 @@ def read_data():
 	for file, list_field in iters:
 		filename = os.fsdecode(file)
 		path = os.path.join(app.config['FILES_FOLDER'], filename)
-		df = pd.read_csv(path).fillna(None)
+		df = pd.read_csv(path) # .fillna(None)
 
 		for country in df["country"]:
 			country_obj = get_country_obj(country)
