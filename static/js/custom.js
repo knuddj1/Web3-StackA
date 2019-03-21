@@ -1,4 +1,8 @@
 $(function () {
+    setUpSidebar();
+});
+
+function setUpSidebar(){
     var sidebar = $("#sidebar");
     var overlay = $(".overlay");
     var merged = $.merge(sidebar, overlay);
@@ -14,4 +18,4 @@ $(function () {
         $('.collapse.in').toggleClass('in');
         $('a[aria-expanded=true]').attr('aria-expanded', 'false');
     });
-});
+}
