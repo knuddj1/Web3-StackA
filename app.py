@@ -47,12 +47,12 @@ def get_country_obj(country_name):
 @app.route('/read_data')
 def read_data():
 
-	db = _get_db()
+	db = connection._get_db()
 	db.connection.drop_database(app.config["DATABASE_NAME"])
 	connect(app.config["DATABASE_NAME"])
 
 	iters = zip(os.listdir(app.config['FILES_FOLDER']),["cell_data", "internet_users", "sugar_data"])
-	
+
 	for file, list_field in iters:
 		filename = os.fsdecode(file)
 		path = os.path.join(app.config['FILES_FOLDER'], filename)
