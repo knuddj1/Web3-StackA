@@ -1,7 +1,7 @@
 $(function () {
     setUpSidebar();
-    $.get(ajaxURL, function(response){
-        console.log("SUCCESS");
+    $.get(ajaxURL + "New Zealand", function(response){
+        console.log(response)
     }).fail(function(){
         console.log("ERROR");
     }).always(function(){
