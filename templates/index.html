@@ -3,6 +3,7 @@
 {% block head %}
 {{ super()}}
 <script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="{{ url_for('static, filename='js/visualisation.js')}}"></script>
 {% endblock %}
 {% block content %}
     <!-- Content Area -->
@@ -15,7 +16,7 @@
         </div>
         <div class="jumbotron jumbotron-fluid border border-light bg-transparent">  
             <div class="container-fluid py-5 px-md-5 content-area">
-                <h1 class="display-4 content-title">PLACEHOLDER FOR VISUALISATION</h1>
+                <h1 class="display-4 content-title" id="visualisation">PLACEHOLDER FOR VISUALISATION</h1>
                 <p class="content-text">Watch this space</p>
             </div>
         </div>                
