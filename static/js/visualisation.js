@@ -19,18 +19,35 @@ function update(data){
     var c = bBox.selectAll("circle")
     .data(data);
     
-    // var max = d3.max(data);
-    // var scale = d3.scale.linear().domain([0, max]).range([0, 100]);
+    data = normalize(data);
 
     c.exit().remove();
 
     c.enter().append("circle");
 
     c.attr("r",10)
-    .attr("transform",function(d, i){ return "translate(" +  getRandomInt(1, width) + "," + getRandomInt(1, width) + ")"})
+    .attr("transform",function(d, i){ return "translate(" +  d.payload +  "," + d.payload + ")"})
     .attr("fill", function(d, i){ return getRandomColor()});
 
-    c.append("text").text(function(d){ return d.year})
+    c.append("text").text(function(d,i){ return d[i].year})
+}
+
+function get_max(data){
+  var max = 0;
+  for (var i = 0; i < data.length; i++){
+    if (data[i].payload > max){
+      max = data[i].payload
+    }
+  }
+  return max;
+}
+
+function normalize(data){
+  var max = get_max(data);
+  for (var i = 0; i < data.length; i++){
+    data[i].payload = data[i].payload / max;
+  }
+  return data
 }
 
 function getRandomInt(min, max) {
