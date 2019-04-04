@@ -3,8 +3,8 @@ function displayData(URL){
       var responseObj = JSON.parse(response);
       var prepared = prepare_data(responseObj[0]["cell_data"]);
       update(prepared);
-      update(prepared);
-      update(prepared);
+      // update(prepared);
+      // update(prepared);
     }).fail(function(){
         console.log("ERROR");
     }).always(function(){
@@ -24,7 +24,6 @@ function update(data){
     var bBox = d3.select("svg");
     width = +bBox.attr("width");
     height = +bBox.attr("height");
-    console.log(data);
     var c = bBox.selectAll("circle")
     .data(data);
     
