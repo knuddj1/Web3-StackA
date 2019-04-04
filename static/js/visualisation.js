@@ -20,6 +20,8 @@ function update(data){
     
     data = normalize(data);
 
+    g.exit().remove();
+
     var en = g.enter().append("g")
       .attr("transform",function(d){
       return "translate(" +  d.payload * width +  "," + Math.random() * height + ")"
