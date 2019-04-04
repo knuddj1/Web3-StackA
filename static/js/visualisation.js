@@ -19,8 +19,8 @@ function update(data){
     var c = bBox.selectAll("circle")
     .data(data);
     
-    var max = d3.max(data);
-    var scale = d3.scale.linear().domain([0, max]).range([0, 100]);
+    // var max = d3.max(data);
+    // var scale = d3.scale.linear().domain([0, max]).range([0, 100]);
 
     c.exit().remove();
 
