@@ -4,6 +4,7 @@ function displayData(URL){
       var prepared = prepare_data(responseObj[0]["cell_data"])
       console.log(prepared)
       update(prepared)
+      update(prepared)
     }).fail(function(){
         console.log("ERROR");
     }).always(function(){
