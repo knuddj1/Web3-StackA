@@ -28,6 +28,9 @@ function update(data){
     parent_width = +parent.attr("width");
     parent_height = +parent.attr("height");
 
+    console.log(parent_width);
+    console.log(parent_height);
+
     bBox.attr("width", parent_width);
     bBox.attr("height", parent_height);
 
