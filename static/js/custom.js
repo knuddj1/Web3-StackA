@@ -19,14 +19,4 @@ function setUpSidebar(){
         $('a[aria-expanded=true]').attr('aria-expanded', 'false');
     });
 }
-
-function displayData(URL){
-    $.get(URL, function(response){
-        console.log(response)
-    }).fail(function(){
-        console.log("ERROR");
-    }).always(function(){
-        console.log("DONE!");
-    });
-}
     
