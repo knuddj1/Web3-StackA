@@ -28,7 +28,7 @@ function update(data){
 
     c.attr("r",10)
     .attr("transform",function(d, i){ return "translate(" +  getRandomInt(1, width) + "," + getRandomInt(1, width) + ")"})
-    .attr("fill", getRandomColor());
+    .attr("fill", function(d, i){ return getRandomColor()});
 
     c.append("text").text(function(d){ return d.year})
 }
