@@ -3,7 +3,7 @@
 {% block head %}
 {{ super()}}      
 <script>
-    var ajaxURL = "{{ url_for('get_country')}}" + "New Zealand";
+    var ajaxURL = "{{ url_for('get_country')}}" + "/New Zealand";
 </script>
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <script src="{{ url_for('static', filename='js/visualisation.js')}}"></script>
