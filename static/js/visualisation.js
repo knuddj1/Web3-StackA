@@ -11,14 +11,19 @@ function displayData(URL){
 }
 
 function update(data){
-    var g = d3.select("#test").selectAll("g")
+    root = d3.select("#test")
+
+    width = +root.attr("width");
+    height = +root.attr("height");
+
+    var g = root.selectAll("g")
     .data(data);
     
     data = normalize(data);
 
     var en = g.enter().append("g")
       .attr("transform",function(d){
-      return "translate(" +  d.payload +  "," + d.payload + ")"
+      return "translate(" +  d.payload * width +  "," + d.payload * height + ")"
     });
 
     var circle = en.append("circle")
