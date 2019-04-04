@@ -48,11 +48,11 @@ function get_max(data){
       max_year = data[i].year
     }
   }
-  return max_pay, max_year;
+  return [max_pay, max_year];
 }
 
 function normalize(data){
-  var max_pay, max_year = get_max(data);
+  [max_pay, max_year] = get_max(data);
   console.log(max_pay, max_year)
   for (var i = 0; i < data.length; i++){
     data[i].payload = data[i].payload / max_pay;
