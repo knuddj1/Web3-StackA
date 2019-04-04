@@ -21,7 +21,7 @@ function prepare_data(data){
 }
 
 function update(data){
-    var bBox = d3.select("svg");
+    var bBox = d3.select("#visualisation");
 
     var parent = bBox.select(function() { return this.parentNode; })
 
