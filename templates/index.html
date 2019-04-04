@@ -1,7 +1,11 @@
 {% extends "base_template.html" %}
 {% block title %}{{page_title}}{% endblock %}
 {% block head %}
-{{ super()}}
+{{ super()}}      
+<script>
+    var ajaxURL = "{{ url_for('get_country')}}";
+    console.log(ajaxURL);
+</script>
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <script src="{{ url_for('static', filename='js/visualisation.js')}}"></script>
 {% endblock %}
@@ -17,7 +21,7 @@
         <div class="jumbotron jumbotron-fluid border border-light bg-transparent">  
             <div class="container-fluid py-5 px-md-5 content-area">
                 <h1 class="display-4 content-title" id="visualisation">PLACEHOLDER FOR VISUALISATION</h1>
-                <p class="content-text">Watch this space</p>
+                <svg onload="displayData()"></svg>
             </div>
         </div>                
     </div>

@@ -1,5 +1,8 @@
 var data = [1,2,3,4,5]
-var svg = d3.select("#visualisation").data(data);
+var canvas = d3.select("#visualisation")
+
+var circle = svg.selectAll("circle")
+  .data(data);
 
 circle.exit().remove();
 

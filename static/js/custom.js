@@ -20,7 +20,7 @@ function setUpSidebar(){
     });
 }
 
-var get_country  = function(URL){
+function displayData(URL){
     $.get(URL, function(response){
         console.log(response)
     }).fail(function(){
