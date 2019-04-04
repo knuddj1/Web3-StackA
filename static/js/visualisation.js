@@ -10,9 +10,8 @@ function displayData(URL){
 }
 
 function update(data){
+    d3.selectAll("#test > *").remove();
     root = d3.select("#test")
-
-    root.selectAll("this > *").remove();
 
     width = +root.attr("width");
     height = +root.attr("height");
