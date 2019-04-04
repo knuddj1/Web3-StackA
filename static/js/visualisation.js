@@ -25,7 +25,7 @@ function update(data){
 
     var en = g.enter().append("g")
       .attr("transform",function(d){
-      return "translate(" +  d.payload * width +  "," + d.year * height + ")"
+      return "translate(" +  d.payload * width +  "," + Math.random() * height + ")"
     });
 
     var circle = en.append("circle")
@@ -38,25 +38,19 @@ function update(data){
 }
 
 function get_max(data){
-  var max_pay = 0;
-  var max_year = 0
+  var max = 0;
   for (var i = 0; i < data.length; i++){
-    if (data[i].payload > max_pay){
-      max_pay = data[i].payload
-    }
-    if (data[i].year > max_year){
-      max_year = data[i].year
+    if (data[i].payload > max){
+      max = data[i].payload
     }
   }
-  return [max_pay, max_year];
+  return max;
 }
 
 function normalize(data){
-  [max_pay, max_year] = get_max(data);
-  console.log(max_pay, max_year)
+  var max = get_max(data);
   for (var i = 0; i < data.length; i++){
-    data[i].payload = data[i].payload / max_pay;
-    data[i].year = data[i].year / max_year;
+    data[i].payload = data[i].payload / max;
   }
   return data
 }
