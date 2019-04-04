@@ -1,10 +1,10 @@
 function displayData(URL){
     $.get(URL, function(response){
       var responseObj = JSON.parse(response);
-      var prepared = prepare_data(responseObj[0]["cell_data"])
-      update(prepared)
-      update(prepared)
-      update(prepared)
+      var prepared = prepare_data(responseObj[0]["cell_data"]);
+      update(prepared);
+      update(prepared);
+      update(prepared);
     }).fail(function(){
         console.log("ERROR");
     }).always(function(){
@@ -24,13 +24,14 @@ function update(data){
     var bBox = d3.select("svg");
     width = +bBox.attr("width");
     height = +bBox.attr("height");
-
+    console.log(data);
     var c = bBox.selectAll("circle")
     .data(data);
     
     c.exit().remove();
 
     c.enter().append("circle");
+
     c.attr("r",10)
     .attr("transform",function(d,i){ return "translate(" +  getRandomInt(1, width) + "," +  getRandomInt(1, height) + ")"})
 }
