@@ -22,8 +22,15 @@ function prepare_data(data){
 
 function update(data){
     var bBox = d3.select("svg");
-    width = +bBox.attr("width");
-    height = +bBox.attr("height");
+
+    var parent = d3.select(bBox.parentNode);
+
+    parent_width = +parent.attr("width");
+    parent_height = +parent.attr("height");
+
+    bBox.attr("width", parent_width);
+    bBox.attr("height", parent_height);
+
     var c = bBox.selectAll("circle")
     .data(data);
     
@@ -32,7 +39,7 @@ function update(data){
     c.enter().append("circle");
 
     c.attr("r",10)
-    .attr("transform",function(d,i){ return "translate(" +  getRandomInt(1, width) + "," +  getRandomInt(1, height) + ")"})
+    .attr("transform",function(d,i){ return "translate(" +  getRandomInt(1, parent_width) + "," +  getRandomInt(1, parent_height) + ")"})
 }
 
 function getRandomInt(min, max) {
