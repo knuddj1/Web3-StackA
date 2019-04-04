@@ -1,8 +1,8 @@
 function displayData(URL){
     $.get(URL, function(response){
       var responseObj = JSON.parse(response);
-      console.log(responseObj[0]["cell_data"])
       var prepared = prepare_data(responseObj[0]["cell_data"])
+      console.log(prepared)
       update(prepared)
     }).fail(function(){
         console.log("ERROR");
