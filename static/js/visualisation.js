@@ -21,11 +21,11 @@ function prepare_data(data){
 }
 
 function update(data){
-    var bBox = d3.select("svg");
+    var bBox = d3.select("#test");
 
     width = +bBox.attr("width");
     height = +bBox.attr("height");
-    
+
     var c = bBox.selectAll("circle")
     .data(data);
     
