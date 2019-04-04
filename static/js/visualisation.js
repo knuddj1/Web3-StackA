@@ -11,25 +11,23 @@ function displayData(URL){
 }
 
 function update(data){
-    var bBox = d3.select("#test");
-
-    width = +bBox.attr("width");
-    height = +bBox.attr("height");
-
-    var c = bBox.selectAll("circle")
+    var g = d3.select("#test").selectAll("g")
     .data(data);
     
     data = normalize(data);
 
-    c.exit().remove();
+    var en = g.enter().append("g")
+      .attr("transform",function(d){
+      return "translate(" +  d.payload +  "," + d.payload + ")"
+    });
 
-    c.enter().append("circle");
+    var circle = en.append("circle")
+        .attr("r",10)
+        .attr("fill", function(d){
+          return getRandomColor()}
+        );
 
-    c.attr("r",10)
-    .attr("transform",function(d, i){ return "translate(" +  d.payload +  "," + d.payload + ")"})
-    .attr("fill", function(d, i){ return getRandomColor()});
-
-    c.append("text").text(function(d,i){ return d[i].year})
+    en.append("text").text(function(d){ return d.year})
 }
 
 function get_max(data){
