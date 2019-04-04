@@ -27,8 +27,8 @@ function update(data){
 
     console.log(parent)
 
-    parent_width = +parent.attr("clientWidth");
-    parent_height = +parent.attr("clientHeight");
+    parent_width = parent.clientWidth;
+    parent_height = parent.clientHeight;
 
     console.log(parent_width);
 
