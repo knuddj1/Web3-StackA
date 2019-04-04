@@ -27,8 +27,8 @@ function update(data){
 
     console.log(parent)
 
-    parent_width = +parent.attr("width");
-    parent_height = +parent.attr("height");
+    parent_width = +parent.attr("clientWidth");
+    parent_height = +parent.attr("clientHeight");
 
     bBox.attr("width", parent_width);
     bBox.attr("height", parent_height);
