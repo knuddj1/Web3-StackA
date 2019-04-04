@@ -23,7 +23,7 @@ function prepare_data(data){
 function update(data){
     var bBox = d3.select("svg");
 
-    var parent = d3.select(bBox.parentNode);
+    var parent = bBox.select(function() { return this.parentNode; })
 
     parent_width = +parent.attr("width");
     parent_height = +parent.attr("height");
