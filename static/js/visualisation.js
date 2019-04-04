@@ -23,7 +23,7 @@ function update(data){
 
     var en = g.enter().append("g")
       .attr("transform",function(d){
-      return "translate(" +  d.payload * width +  "," + d.payload * height + ")"
+      return "translate(" +  d.payload * width +  "," + Math.random() * height + ")"
     });
 
     var circle = en.append("circle")
