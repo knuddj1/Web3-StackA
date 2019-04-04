@@ -1,7 +1,7 @@
 function displayData(URL){
     $.get(URL, function(response){
       var responseObj = JSON.parse(response);
-      var prepared = prepare_data(responseObj[0]["cell_data"]);
+      var prepared = prepare_data(responseObj[0].cell_data);
       update(prepared);
       update(prepared);
       // update(prepared);
@@ -15,7 +15,7 @@ function displayData(URL){
 function prepare_data(data){
     var out = []
     for(var i = 0; i < data.length; i++){
-        out[i] = data[i]["payload"]
+        out[i] = data[i].payload
     }
     return out
 }
@@ -29,12 +29,15 @@ function update(data){
     var c = bBox.selectAll("circle")
     .data(data);
     
+    var max = d3.max(data);
+    var scale = d3.scale.linear().domain([0, max]).range([0, 100]);
+
     c.exit().remove();
 
     c.enter().append("circle");
 
     c.attr("r",10)
-    .attr("transform",function(d,i){ return "translate(" +  getRandomInt(1, width) + "," +  getRandomInt(1, height) + ")"})
+    .attr("transform",function(d,i){ return "translate(" +  scale(d) + "," +  scale(d) + ")"})
 }
 
 function getRandomInt(min, max) {
