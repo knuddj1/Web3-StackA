@@ -13,7 +13,7 @@ function update(data){
     root = d3.select("#test")
 
     while (root.lastChild) {
-      svg.removeChild(svg.lastChild);
+      root.removeChild(svg.lastChild);
     }
 
     width = +root.attr("width");
