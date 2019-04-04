@@ -2,7 +2,6 @@ function displayData(URL){
     $.get(URL, function(response){
       var responseObj = JSON.parse(response)[0];
       update(responseObj.cell_data);
-      update(responseObj.cell_data);
     }).fail(function(){
         console.log("ERROR");
     }).always(function(){
