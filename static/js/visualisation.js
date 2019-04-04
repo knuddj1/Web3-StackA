@@ -12,9 +12,7 @@ function displayData(URL){
 function update(data){
     root = d3.select("#test")
 
-    while (root.lastChild) {
-      root.removeChild(svg.lastChild);
-    }
+    root.selectAll("this > *").remove();
 
     width = +root.attr("width");
     height = +root.attr("height");
