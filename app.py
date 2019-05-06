@@ -64,14 +64,15 @@ def read_data():
 
 
 
-@app.route('/update/<string:country_name>', methods=['PUT'])
-def update_country(country_name=None):
+@app.route('/delete/<string:country_name>', methods=['DELETE'])
+def delete_country(country_name):
 	country = Country.objects(country_name=country_name)
 	return country.to_json()
 
 @app.route('/create/<string:country_name>', methods=['POST'])
-def create_country(country_name=None):
-	country = Country.objects(country_name=country_name)
+def create_country(country_name):
+	try:
+		Country.objects(country_name=country_name)
 	return country.to_json()
 
 
