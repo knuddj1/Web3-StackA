@@ -71,8 +71,7 @@ def delete_country(country_name):
 
 @app.route('/create/<string:country_name>', methods=['POST'])
 def create_country(country_name):
-	try:
-		Country.objects(country_name=country_name)
+	country = Country.objects(country_name=country_name)
 	return country.to_json()
 
 
