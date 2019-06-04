@@ -1,7 +1,58 @@
-function displayData(URL){
+function listCountries(){
+  var URL = "/countries_list"
+  var responseObj;
+  var countries_lst = [];
+  $.get(URL, function(response){
+    responseObj = JSON.parse(response);
+  }).fail(function(){
+      console.log("ERROR");
+  }).always(function(){
+    responseObj.forEach(elem => {
+      countries_lst.push(elem["country_name"]);
+    });
+
+    var selectbox = document.getElementById('countries-selectbox');
+    countries_lst.forEach(elem => {
+    elem = "/" + elem;
+    opt = document.createElement('option');
+    opt.value = elem;
+    opt.innerHTML = elem;
+    selectbox.appendChild(opt);
+    });
+  });
+}
+  
+function listDatasets(){
+  var URL = "/data_list"
+  var datasetList;
+  $.get(URL, function(response){
+    datasetList = JSON.parse(response);
+  }).fail(function(){
+      console.log("ERROR");
+  }).always(function(){
+    var selectbox = document.getElementById('dataset-selectbox');
+    datasetList.forEach(elem => {
+      opt = document.createElement('option');
+      opt.value = elem;
+      opt.innerHTML = elem;
+      selectbox.appendChild(opt);
+    });
+  });
+}
+
+
+function displayData(){
+    URL = "/country"
+
+    var e = document.getElementById("countries-selectbox");
+    var country = e.options[e.selectedIndex].value;
+
+    if(country != "All"){URL = URL + country;}
+
     $.get(URL, function(response){
       var responseObj = JSON.parse(response)[0];
-      update(responseObj.cell_data);
+      console.log(responseObj);
+      update(responseObj["cell_data"]);
     }).fail(function(){
         console.log("ERROR");
     }).always(function(){
@@ -53,12 +104,6 @@ function normalize(data){
     data[i].payload = data[i].payload / max;
   }
   return data
-}
-
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
 }
 
 function getRandomColor() {

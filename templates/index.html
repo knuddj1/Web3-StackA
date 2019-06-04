@@ -3,7 +3,6 @@
 {% block head %}
 {{ super()}}      
 <script>
-    var ajaxURL = "{{ url_for('get_country')}}" + "/New Zealand";
 </script>
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <script src="{{ url_for('static', filename='js/visualisation.js')}}"></script>
@@ -20,9 +19,14 @@
         <div class="jumbotron jumbotron-fluid border border-light bg-transparent">  
             <div class="container-fluid py-5 px-md-5 content-area">
                 <h1 class="display-4 content-title">PLACEHOLDER FOR VISUALISATION</h1>
-                <button onclick="displayData(ajaxURL)">CLICK ME</button>
+                <select id="countries-selectbox">
+                    <option value="All">All</option>
+                </select>
+                <select id="dataset-selectbox"></select>
+                <button onclick="displayData()">CLICK ME</button>
                 <svg id="test" width="1000" height="300"></svg>
-            </div>  
+            </div>
         </div>                
     </div>
+    <script>listCountries(); listDatasets();</script>
 {% endblock %}

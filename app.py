@@ -1,8 +1,8 @@
 import os
 import pandas as pd
+import json
 from flask import Flask, render_template, redirect, url_for
 from mongoengine import *
-
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -45,10 +45,12 @@ def get_country_obj(country_name):
 
 @app.route('/read_data')
 def read_data():
-	iters = zip(os.listdir(app.config['FILES_FOLDER']),["cell_data", "internet_users", "sugar_data"])
+	Country.objects.delete()
 
-	for file, list_field in iters:
-		filename = os.fsdecode(file)
+	iters = zip(os.listdir(app.config['FILES_FOLDER']), app.config["DATASET_NAMES"])
+
+	for fname, list_field in iters:
+		filename = os.fsdecode(fname)
 		path = os.path.join(app.config['FILES_FOLDER'], filename)
 		df = pd.read_csv(path).fillna(-1)
 
@@ -61,18 +63,7 @@ def read_data():
 				d = Data(year = int(year), payload = float(payload))
 				country_obj[list_field].append(d)
 			country_obj.save()
-
-
-
-@app.route('/delete/<string:country_name>', methods=['DELETE'])
-def delete_country(country_name):
-	country = Country.objects(country_name=country_name)
-	return country.to_json()
-
-@app.route('/create/<string:country_name>', methods=['POST'])
-def create_country(country_name):
-	country = Country.objects(country_name=country_name)
-	return country.to_json()
+	return redirect("index")
 
 
 @app.route('/country', methods=['GET'])
@@ -84,5 +75,15 @@ def get_country(country_name=None):
 		return Country.objects(country_name=country_name).to_json()
 
 
+@app.route('/countries_list', methods=['GET'])
+def get_countries_list():	
+	return Country.objects.values_list("country_name").to_json()
+
+@app.route('/data_list', methods=['GET'])
+def get_dataset_names():
+	return json.dumps(app.config["DATASET_NAMES"])
+
+
 if __name__ =="__main__":
 	app.run(debug=True, host='0.0.0.0', port=80)
+
