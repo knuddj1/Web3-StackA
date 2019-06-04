@@ -13,9 +13,8 @@ function listCountries(){
 
     var selectbox = document.getElementById('countries-selectbox');
     countries_lst.forEach(elem => {
-    elem = "/" + elem;
     opt = document.createElement('option');
-    opt.value = elem;
+    opt.value = "/" + elem;
     opt.innerHTML = elem;
     selectbox.appendChild(opt);
     });
