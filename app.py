@@ -8,25 +8,24 @@ app = Flask(__name__)
 app.config.from_object('config')
 connect(app.config["DATABASE_NAME"])
 
-class Data(EmbeddedDocument):
-	year = IntField()
+class Country(EmbeddedDocument):
+	country_name = StringField()
 	payload = FloatField()
 
-class Country(Document):
-	country_name = StringField()
-	cell_data = ListField(EmbeddedDocumentField(Data))
-	internet_users = ListField(EmbeddedDocumentField(Data))
-	sugar_data = ListField(EmbeddedDocumentField(Data))
+class Year(EmbeddedDocument):
+	year = IntField()
+	countries = ListField(EmbeddedDocumentField(Country))
 
+class Dataset(Document):
+	dataset_name = StringField()
+	years = ListField(EmbeddedDocumentField(Year))
 
 @app.route('/')
 @app.route('/index')
 @app.route('/home')
 def index():
-	kwargs = {
-		"page_title": "Index"
-		}
-	return render_template("index.html", **kwargs)
+	page_title = "Index"
+	return render_template("index.html", page_title=page_title)
 
 
 @app.route('/inspiration')
@@ -35,49 +34,38 @@ def inspiration():
 	return render_template("inspirations.html", page_title=page_title)
 
 
-def get_country_obj(country_name):
-	country_obj = Country.objects(country_name=country_name).first()
-	if country_obj is None:
-		country_obj = Country(country_name=country_name)
-		country_obj.save()
-	return country_obj
-
-
 @app.route('/read_data')
 def read_data():
-	Country.objects.delete()
-
+	Dataset.objects.delete()
 	iters = zip(os.listdir(app.config['FILES_FOLDER']), app.config["DATASET_NAMES"])
-
-	for fname, list_field in iters:
+	for fname, dname in iters:
 		filename = os.fsdecode(fname)
 		path = os.path.join(app.config['FILES_FOLDER'], filename)
 		df = pd.read_csv(path).fillna(-1)
 
-		for country in df["country"]:
-			country_obj = get_country_obj(country)
-			query = df.loc[df["country"] == country]
-			query = query.to_dict(orient='list')
-			for year in list(df)[1:]:
-				payload = query[year][0]
-				d = Data(year = int(year), payload = float(payload))
-				country_obj[list_field].append(d)
-			country_obj.save()
+		years = dict((key, Year(year=key)) for key in list(df)[1:])
+		for _, row in df.iterrows():
+			country_name = row['country']
+			for k, v in list(row.iteritems())[1:]:
+				country = Country(country_name=country_name, payload=v)
+				years[k]["countries"].append(country)
+		
+		dataset = Dataset(dataset_name=dname)
+		for year in years.values():
+			dataset["years"].append(year)
+		dataset.save()	
 	return redirect("index")
 
 
-@app.route('/country', methods=['GET'])
-@app.route('/country/<string:country_name>', methods=['GET'])
-def get_country(country_name=None):	
-	if country_name is None:
-		return Country.objects.to_json()
+@app.route('/get_dataset', methods=['GET'])
+@app.route('/get_dataset/<string:dname>', methods=['GET'])
+def get_dataset(dname=None):	
+	if dname is None:
+		return Dataset.objects.to_json()
 	else:
-		return Country.objects(country_name=country_name).to_json()
+		return Dataset.objects(dataset_name=dname).to_json()
 
 
-@app.route('/countries_list', methods=['GET'])
-def get_countries_list():	
-	return Country.objects.values_list("country_name").to_json()
 
 @app.route('/data_list', methods=['GET'])
 def get_dataset_names():

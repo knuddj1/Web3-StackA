@@ -19,14 +19,12 @@
         <div class="jumbotron jumbotron-fluid border border-light bg-transparent">  
             <div class="container-fluid py-5 px-md-5 content-area">
                 <h1 class="display-4 content-title">PLACEHOLDER FOR VISUALISATION</h1>
-                <select id="countries-selectbox">
-                    <option value="All">All</option>
-                </select>
-                <select id="dataset-selectbox"></select>
+                <select id="dataset-selectbox" onchange="listYears()"></select>
+                <select id="years-selectbox"></select>
                 <button onclick="displayData()">CLICK ME</button>
                 <svg id="test" width="1000" height="300"></svg>
             </div>
         </div>                
     </div>
-    <script>listCountries(); listDatasets();</script>
+    <script>listDatasets();</script>
 {% endblock %}
