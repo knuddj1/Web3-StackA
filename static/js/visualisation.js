@@ -54,7 +54,6 @@ function displayData(){
     
     $.get(URL, function(response){
       responseObj = JSON.parse(response)[0].years;
-      console.log(responseObj);
       var data = responseObj.find(function(elem){
         return elem.year == year;
       });
