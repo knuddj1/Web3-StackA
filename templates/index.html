@@ -15,16 +15,15 @@
                 <h1 class="display-4 content-title">LANDING PAGE</h1>
                 <p class="content-text">That first page you reach on a website. You know the one</p>
             </div>
-        </div>
-        <div class="jumbotron jumbotron-fluid border border-light bg-transparent">  
             <div class="container-fluid py-5 px-md-5 content-area">
-                <h1 class="display-4 content-title">PLACEHOLDER FOR VISUALISATION</h1>
                 <select id="dataset-selectbox" onchange="listYears()"></select>
                 <select id="years-selectbox"></select>
                 <button onclick="displayData()">CLICK ME</button>
-                <svg id="test" width="1000" height="300"></svg>
+                    <div class="container-fluid py-4 px-md-5">
+                    <svg id="svg-canvas" width="960" height="500"></svg>
+                </div>
             </div>
-        </div>                
+        </div>              
     </div>
     <script>listDatasets();</script>
 {% endblock %}
