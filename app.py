@@ -41,7 +41,7 @@ def read_data():
 	for fname, dname in iters:
 		filename = os.fsdecode(fname)
 		path = os.path.join(app.config['FILES_FOLDER'], filename)
-		df = pd.read_csv(path).fillna(-1)
+		df = pd.read_csv(path).fillna(0)
 
 		years = dict((key, Year(year=key)) for key in list(df)[1:])
 		for _, row in df.iterrows():

@@ -16,12 +16,16 @@
                 <p class="content-text">That first page you reach on a website. You know the one</p>
             </div>
             <div class="container-fluid py-5 px-md-5 content-area">
+                <span>X AXIS:</span>
                 <select id="dataset-selectbox" onchange="listYears()"></select>
-                <select id="years-selectbox"></select>
-                <button onclick="displayData()">CLICK ME</button>
-                    <div class="container-fluid py-4 px-md-5">
+                <span>Y AXIS:</span>
+                <select id="dataset-selectbox2" onchange="listYears()"></select>
+                <div class="container-fluid py-4 px-md-5">
                     <svg id="svg-canvas" width="960" height="500"></svg>
                 </div>
+                <div class="slidecontainer">
+                    <input type="range" class="slider" id="years-slider" oninput="displayData()">
+                  </div>
             </div>
         </div>              
     </div>
